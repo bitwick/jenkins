@@ -27,6 +27,7 @@ RUN chmod 0700 ${REF}/.ssh
 COPY --chown=jenkins:jenkins ${ENV_GIT_CONFIG} ${REF}/.ssh/config
 COPY --chown=jenkins:jenkins ${ENV_GIT_KEY} ${REF}/.ssh/id_rsa
 RUN chmod 600 ${REF}/.ssh/id_rsa
+RUN chmod 600 ${REF}/.ssh/config
 
 # Copy Jobs
 RUN mkdir ${REF}/jobs

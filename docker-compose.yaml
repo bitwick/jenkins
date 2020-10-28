@@ -22,6 +22,9 @@ services:
         build:
             context: .
             dockerfile: dockerfile/worker.dockerfile
+            args:
+                - ENV_GIT_CONFIG=${ENV_GIT_CONFIG}
+                - ENV_GIT_KEY=${ENV_GIT_KEY}
     admin-host:
         container_name: admin-host
         hostname: admin-host
