@@ -1,0 +1,52 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "jenkins-worker-sshkey"
+          password: "jenkins"
+          scope: GLOBAL
+          username: "jenkins"
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin\n\n"
+  labelString: "master"
+  numExecutors: 4
+  primaryView:
+    all:
+      name: "all"
+  slaveAgentPort: 50000
+  agentProtocols:
+    - "JNLP4-connect"
+  securityRealm:
+    local:
+      enableCaptcha: false
+      allowsSignup: false
+      users:
+        - id: jenkins
+          password: password
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:jenkins"
+  nodes:
+    - permanent:
+        launcher:
+          ssh:
+            credentialsId: "jenkins-worker-sshkey"
+            host: "jenkins-worker"
+            port: 22
+            sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+        name: "jenkins-worker"
+        numExecutors: 4
+        remoteFS: "/home/jenkins"
+        retentionStrategy: "always"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: 1
+  scriptApproval:
+    approvedSignatures:
+    - "staticMethod java.lang.System getenv"

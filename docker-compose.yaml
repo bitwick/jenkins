@@ -1,0 +1,32 @@
+version: "3.4"
+services: 
+    jenkins-manager:
+        container_name: jenkins-manager
+        hostname: jenkins-manager
+        build:
+            context: .
+            dockerfile: dockerfile/manager.dockerfile
+            # Docker environment variables pulled from .env file
+            args:
+                - PLUGINS=${ENV_PLUGINS}
+                - CASC=${ENV_CASC}
+                - BUILD_ENV=${BUILD_ENV}
+                - ENV_GIT_CONFIG=${ENV_GIT_CONFIG}
+                - ENV_GIT_KEY=${ENV_GIT_KEY}
+                - JOB_EXAMPLES=${JOB_EXAMPLES}
+        ports:
+            - 80:8080
+    jenkins-worker:
+        container_name: jenkins-worker
+        hostname: jenkins-worker
+        build:
+            context: .
+            dockerfile: dockerfile/worker.dockerfile
+    admin-host:
+        container_name: admin-host
+        hostname: admin-host
+        build:
+            context: .
+            dockerfile: dockerfile/admin.dockerfile
+        stdin_open: true
+        tty: true
