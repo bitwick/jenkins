@@ -73,7 +73,7 @@ The 'git' folder contains any files needed for Jenkins to access the Git reposit
 ├── config
 └── id_rsa
 ```
-*** If id_rsa file is missing, either add private key to the folder or comment the manager dockerfile to ignore the file.
+** If id_rsa file is missing, either add private key to the folder or comment the manager dockerfile to ignore the file. **
 ### Plugins
 The 'plugins' folder should contain a plugin file or each corresponding system environment. If a Jenkins sytem is up and not sure about which plugins are being used or want to create a plugins list run the following code in Jenkins Script Console.
 ```
@@ -84,4 +84,4 @@ The 'casc' folder should contain a Jenkins configuration file for each correspon
 For additional information about Jenkins Configuration as Code: https://github.com/jenkinsci/configuration-as-code-plugin
 
 ### Examples
-The 'example' folder seeds an example pipeline job attached that gets ran on the jenkins-worker.
+The 'examples' folder seeds an example pipeline job attached that gets ran on the jenkins-worker.
